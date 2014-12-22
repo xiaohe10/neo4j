@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/networkDiagram.css" />
+    <script src="/static/networkDiagram.js"></script>
+    <script src="/static/vendor/d3/d3.min.js"></script>
+    <script src="/static/vendor/jquery-1.11.1.js"></script>
+    <script src="/static/vendor/colorGenerator.js"></script>
+    <script src="/static/vendor/underscore.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Network Diagram</h1>
+    <table>
+        <tr>
+            <td>Colorcode</td>
+            <td>Node size</td>
+            <td>Directed</td>
+        </tr>
+        <tr>
+            <td>
+                <select id="colorcode">
+                    <option value="colored">Colored</option>
+                    <option value="black-white">black-white</option>
+                </select>
+            </td>
+            <td>
+                <select id="nodeSize">
+                    <option value="outgoing">Outgoing</option>
+                    <option value="incoming">Incoming</option>
+                </select>
+            </td>
+            <td>
+                <select id="directed">
+                    <option value="true">Directed</option>
+                    <option value="false">Undirected</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Tooltip enabled?</td>
+            <td>Sorting Tooltip</td>
+            <td>SortingOrder Tooltip</td>
+            <td>Tooltip Format</td>
+        </tr>
+        <tr>
+            <td>
+                <select id="tooltipSetting">
+                    <option value="none">None</option>
+                    <option value="movable">Movable</option>
+                    <option value="static">Right Side</option>
+                </select>
+            </td>
+            <td>
+                <select id="sortingTooltip">
+                    <option value="source">Alphabetically by source</option>
+                    <option value="target">Alphabetically by target</option>
+                    <option value="data">Value</option>
+                </select>
+            </td>
+            <td>
+                <select id="sortingOrderTooltip">
+                    <option value="true">Ascending</option>
+                    <option value="false">Descending</option>
+                </select>
+            </td>
+            <td>
+                <select id="tooltipOrientation">
+                    <option value="horizontal">Horizontal</option>
+                    <option value="vertical">Vertical</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    <button onclick="getValues()">Draw NetworkDiagram</button>
+    <p></p>
+    <div id="c1" style="float: left; width:700px; height: 700px; border:solid; border-color:black"></div>
+    <div id="tooltipDIV" style="float: right; width:300px; height: 700px"></div>
+        <script type="application/javascript">
+        var data = [
+            {% for followed in followedList %}
+            { source: "{{ start_userID}}", target: "{{ followed }}", value: 1},
+            {% endfor %}
+        ];
+        </script>
+    <script src="/static/network_module.js"></script>
+</body>
+</html>
