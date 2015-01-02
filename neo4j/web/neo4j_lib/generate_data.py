@@ -87,8 +87,14 @@ def show_Relationships():
     relationships = graph.match(end_node=start_node,rel_type="FOLLOWS")
     for rel in relationships:
         print rel.start_node["userID"],"->",rel.end_node["userID"]
-#graph.delete_all()
-#generate_Users()
-#generate_Relationships()
-#show_Users()
+#
+print "此程序会清空 neo4j数据库"
+print "正在清空"
+graph.delete_all()
+print "生成用户"
+generate_Users()
+print "生成用户关系"
+generate_Relationships()
+show_Users()
 show_Relationships()
+print "生成成功！结束"

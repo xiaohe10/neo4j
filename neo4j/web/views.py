@@ -15,6 +15,14 @@ def view(request):
     return render(request,"view.html",locals())
 
 def viewRecommendation(request):
-    start_userID = 4
+    start_userID = 2
+    if request.GET.has_key('startUser'):
+        try:
+            start_userID = int(request.GET['startUser'])
+            if start_userID< 1 or start_userID > 400:
+                start_userID = 2
+        except:
+            start_userID = 2
     relatedList = recommend_friend_by_ID(start_userID)
     return render(request,"recommendationview.html",locals())
+

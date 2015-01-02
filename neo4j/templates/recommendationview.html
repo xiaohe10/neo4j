@@ -11,9 +11,14 @@
     <meta charset="utf-8" />
     <title></title>
 </head>
-<body>
-    <h1>Network Diagram</h1>
-    <table>
+<body style="margin:30px auto;width:1000px">
+    <h1>数据库作业三：可能感兴趣的博主推荐</h1>
+    <form action="/" method="get">
+        <label>请输入目标用户的ID（1~400）</label>
+        <input type="text" name="startUser"/>
+        <input type="submit" value="提交"/>
+    </form>
+    <table style="display:none">
         <tr>
             <td>Colorcode</td>
             <td>Node size</td>
@@ -75,10 +80,14 @@
         </tr>
     </table>
 
-    <button onclick="getValues()">Draw NetworkDiagram</button>
-    <p></p>
-    <div id="c1" style="float: left; width:700px; height: 700px; border:solid; border-color:black"></div>
-    <div id="tooltipDIV" style="float: right; width:300px; height: 700px"></div>
+    <button onclick="getValues()" style="display: none">Draw NetworkDiagram</button>
+    <p>算法描述：给用户推荐可能感兴趣的博主，首先根据用户共同关注的博主来计算用户相似度，将相似度较高的用户关注的博主推荐给目标用户。</p>
+
+    <p>把鼠标悬停在目标用户节点上，半透明的是相似用户，颜色不变的是推荐的博主与原关注博主</p>
+
+    <p>本次目标用户ID：{{ start_userID }}</p>
+    <div id="c1" style="float: left; width:700px; height: 700px; border:solid; border-color:black;margin-bottom: 60px"></div>
+
         <script type="application/javascript">
         var data = [
 
